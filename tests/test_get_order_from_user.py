@@ -20,7 +20,7 @@ class TestGetOrderFromUser:
 
         assert response.status_code == 200
         assert response.json().get("success") is True
-        assert "order" in response.json()
+        assert "orders" in response.json()
 
 
 

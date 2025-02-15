@@ -19,13 +19,12 @@ def generate_registered_user():
 def clean_up_user(request, generate_registered_user):
     user_data = generate_registered_user
 
-    login_response = UserMethods().login_user(user_data)
-
-
     def delete_user_after_test():
+        login_response = UserMethods().login_user(user_data)
         token = login_response.json().get("accessToken")
-        UserMethods().delete_user(token)
-
+        print(f"Generated Token: {token}")
+        delete_response = UserMethods().delete_user(token)
+        assert delete_response.status_code == 202
 
     request.addfinalizer(delete_user_after_test)
 

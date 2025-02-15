@@ -18,7 +18,7 @@ class TestCreateUser:
 
 
     @allure.title('Test user creation with already existing email')
-    def test_create_user_existing_email(self, generate_registered_user, clean_up_user):
+    def test_create_user_existing_email(self, generate_registered_user):
         user_data_1 = generate_registered_user
         create_response_1 = UserMethods().register_user(user_data_1)
         assert create_response_1.status_code == 200
@@ -31,8 +31,11 @@ class TestCreateUser:
         assert create_response_2.json().get("message") == data.ErrorMessages.ERROR_MESSAGES["user_exists"]
 
 
+
+
+
     @allure.title('Test user creation with missing field')
-    def test_create_user_missing_fields(self, generate_registered_user, clean_up_user):
+    def test_create_user_missing_fields(self, generate_registered_user):
         fields_to_check = ['email', 'password', 'name']
         modified_bodies = modify_create_user_body_empty_fields(fields_to_check, generate_registered_user)
         user_data_1 = modified_bodies[0]  # Данные с пустым email

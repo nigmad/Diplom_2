@@ -13,12 +13,12 @@ class UserMethods:
 
 
     def delete_user(self, token):
-        return requests.delete(f'{Url.BASE_URL}{Url.DELETE_USER}', headers={"Authorization": f"Bearer {token}"})
+        return requests.delete(f'{Url.BASE_URL}{Url.DELETE_USER}', headers={"Authorization": f"{token}"})
 
 
 
     def change_user_data(self, token, update_data):
-        return  requests.patch(f'{Url.BASE_URL}{Url.CHANGE_USER_DATA}', json=update_data, headers={"Authorization": f"Bearer {token}"})
+        return  requests.patch(f'{Url.BASE_URL}{Url.CHANGE_USER_DATA}', json=update_data, headers={"Authorization": f"{token}"})
 
 
 

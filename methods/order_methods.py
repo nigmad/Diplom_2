@@ -19,7 +19,11 @@ class OrderMethods:
 
 
     def get_orders_from_user(self, token):
-        return requests.get(f'{Url.BASE_URL}{Url.GET_ORDER_FROM_USER}', headers={"Authorization": f"Bearer {token}"})
+        headers = {
+            "Authorization": f"{token}"
+        }
+        response = requests.get(f'{Url.BASE_URL}{Url.GET_ORDER_FROM_USER}', headers=headers)
+        return response
 
 
 

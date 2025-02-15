@@ -22,6 +22,8 @@ class TestCreateOrder:
         assert order_response.status_code == 200
         assert order_response.json().get("success") is True
         assert "order" in order_response.json()
+        delete_response = UserMethods().delete_user(token)
+        assert delete_response.status_code == 202
 
 
 
@@ -51,6 +53,11 @@ class TestCreateOrder:
         assert order_response.json().get("success") is True
         assert "order" in order_response.json()
 
+        delete_response = UserMethods().delete_user(token)
+        assert delete_response.status_code == 202
+
+
+
     @allure.title('Test creation order with ingredients')
     def test_create_order_without_ingredients(self, register_user_fixture):
         user_data = register_user_fixture
@@ -66,9 +73,14 @@ class TestCreateOrder:
         assert order_response.status_code == 400
         assert order_response.json().get("success") is False
         assert order_response.json().get("message") == data.ErrorMessages.ERROR_MESSAGES["empty_order"]
+        delete_response = UserMethods().delete_user(token)
+        assert delete_response.status_code == 202
+
+
+
 
     @allure.title('Test creation order with wrong ingredient id')
-    def test_create_order_with_wrong_ingredient_id(self, register_user_fixture):
+    def test_create_order_with_wrong_ingredient_id(self, register_user_fixture, clean_up_user):
         user_data = register_user_fixture
         login_response = UserMethods().login_user(user_data)
         assert login_response.status_code == 200

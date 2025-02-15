@@ -8,7 +8,7 @@ fake = Faker()
 
 
 class Url:
-    BASE_URL = 'https://stellarburgers.nomoreparties.site/'
+    BASE_URL = 'https://stellarburgers.nomoreparties.site'
     CREATE_USER = '/api/auth/register'
     LOGIN_USER = '/api/auth/login'
     CHANGE_USER_DATA = '/api/auth/user'
