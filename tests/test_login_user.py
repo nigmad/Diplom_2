@@ -22,7 +22,7 @@ class TestLoginUser:
     @allure.title('Test login with wrong email or password')
     @pytest.mark.parametrize("user_data", [DataForAuth.LOGIN_DATA_WRONG_PASSWORD,
     DataForAuth.LOGIN_DATA_WRONG_EMAIL])
-    def test_login_with_wrong_email_and_password(self, user_data, generate_registered_user):
+    def test_login_with_wrong_email_and_password(self, user_data):
         response = UserMethods().login_user(user_data)
         assert response.status_code == 401
         assert response.json().get("message") == data.ErrorMessages.ERROR_MESSAGES["invalid_credentials"]
